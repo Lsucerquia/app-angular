@@ -1,0 +1,80 @@
+<h1>Link actual:{{imagenDelPadre}}</h1>
+<mat-card class="example-card" appearance="outlined">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Shiba Inu</mat-card-title>
+      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]= "imagenDelPadre ? imagenDelPadre : imagen"  alt="Photo of a Shiba Inu">
+    
+    <mat-card-content>
+      <p>
+        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+        bred for hunting.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+    
+     <button mat-raised-button (click)="alerta(nombre)">Ir al lado oscuro</button>
+     <button mat-raised-button (click)="alerta(entrada.value)">boton</button>
+     <button mat-raised-button (click)="emisor.emit(entrada.value)">SHARE</button>
+    
+    </mat-card-actions>
+  <mat-divider></mat-divider>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title >ejemplos de estructura de control y enlazamientos doble via</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Ingrese su nombre</mat-label>
+        <input matInput [(ngModel)]="nombre"#entrada placeholder="Ingrese su nombre">
+        <mat-icon matSuffix>handshake</mat-icon>
+        <mat-hint>Ingrese su nombre completo</mat-hint>
+      </mat-form-field>
+      <h1>El nombre ingresado es: {{nombre}}</h1>
+    
+    @if (nombre === 'Darth Vader') {
+      <h1>No entres al lado oscuro</h1>
+    } @else {
+      @if (nombre && nombre.length > 0) {
+        <h1>Hola {{nombre}}</h1>
+      }
+    }
+
+    <div *ngIf="nombre == 'Darth Vader'">
+      
+      <h1>jamas retornas de el </h1>
+      <h1>Porque lo hiciste</h1>
+    </div>
+    <ul>
+
+        @for (item of nombres; track $index) {
+
+          <li>
+            Mi nombre es: {{item.nombre}}
+            <br><br/>
+            Edad:{{item.edad}}
+            <br><br/>
+            Pais:{{item.pais}}
+            <br><br/>
+            cedula:{{item.cedula}}
+
+            <img [src]="item.imagen"><img/>
+            
+          </li>
+        }
+
+        
+        <li *ngFor="let iteradora of nombres">
+          Hola desde la forma antigua:{{iteradora.nombre}}
+
+        </li>
+
+    </ul>
+  
+    </mat-card-content>
+  </mat-card>
+
+
